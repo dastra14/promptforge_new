@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Sparkles, Search, Bug, Zap, Gauge, FlaskConical } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Sparkles, Search, Bug, Zap, Gauge, FlaskConical, ArrowRight } from "lucide-react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -23,8 +23,13 @@ const STEPS = [
 ];
 
 export default function Landing() {
-  const { user } = useAuth();
-  const cta = user ? "/create-prompt" : "/register";
+  const { user, demoLogin } = useAuth();
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    if (!user) demoLogin();
+    navigate("/create-prompt");
+  };
 
   return (
     <div>
@@ -41,11 +46,15 @@ export default function Landing() {
           PromptForge generates, analyzes, improves and tests your prompts, so you stop
           guessing and start getting the output you want.
         </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Link to={cta} className="btn-primary px-6 py-3">
-            {user ? "Create a Prompt" : "Get Started Free"}
-          </Link>
-          {!user && <Link to="/login" className="btn-ghost px-6 py-3">Login</Link>}
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <button onClick={handleStart} className="btn-primary px-6 py-3 text-base flex items-center gap-2 shadow-lg shadow-indigo-500/25">
+            <Sparkles size={18} /> Launch Prompt Studio <ArrowRight size={16} />
+          </button>
+          {!user && (
+            <Link to="/login" className="btn-ghost px-6 py-3 text-base">
+              Login
+            </Link>
+          )}
         </div>
       </section>
 
@@ -92,9 +101,9 @@ export default function Landing() {
 
       <section className="px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-white">Ready to forge your first prompt?</h2>
-        <Link to={cta} className="btn-primary mt-6 px-6 py-3">
-          {user ? "Create a Prompt" : "Create your free account"}
-        </Link>
+        <button onClick={handleStart} className="btn-primary mt-6 px-6 py-3 text-base inline-flex items-center gap-2">
+          <Sparkles size={18} /> Launch Prompt Studio
+        </button>
       </section>
 
       <Footer />

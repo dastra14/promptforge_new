@@ -7,6 +7,8 @@ import CreditNote from "../components/CreditNote.jsx";
 import AnalysisCard from "../components/AnalysisCard.jsx";
 
 const SAMPLES = {
+  "Goods & Transport Logistics":
+    "Act as a Principal Full-Stack Architect. Design a production-grade web platform for a Goods and Transport Services company with live GPS cargo tracking, instant quote calculators, fleet dispatch dashboards, and digital proof-of-delivery.\n\nContext: B2B freight and consumer delivery operations.\n\nRequirements: Provide modular architecture, database schema recommendations, and REST API endpoints in clean Markdown.",
   "Study Schedule":
     "Act as an expert academic advisor and tutor. Create a detailed 4-week study plan for an engineering undergraduate preparing for 5 core semester exams.\n\nContext: The student has 6 hours per day available on weekdays and 8 hours on weekends. Subjects include Operating Systems, Database Management Systems, Computer Networks, Theory of Computation, and Software Engineering.\n\nRequirements: Give a week-by-week table, include revision days, and keep the tone motivating.",
   "Code Reviewer":
